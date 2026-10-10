@@ -54,3 +54,10 @@ you break the input into words and fold them yourself.
 - `encode_word(text, charset="utf-8", encoding="B") -> str`
 - `decode_word(encoded) -> str`
 - `decode_header(header) -> str`
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
